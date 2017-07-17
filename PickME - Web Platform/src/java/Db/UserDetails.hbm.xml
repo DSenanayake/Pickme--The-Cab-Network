@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.UserDetails" table="user_details" catalog="`PROJECT4.1`">
+        <id name="userDetailsId" type="java.lang.Integer">
+            <column name="user_details_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="gender" class="Db.Gender" fetch="select">
+            <column name="gender_gender_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="city" class="Db.City" fetch="select">
+            <column name="city_city_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="profilePicture" class="Db.ProfilePicture" fetch="select">
+            <column name="profile_picture_profile_pic_id" not-null="true" />
+        </many-to-one>
+        <property name="firstname" type="string">
+            <column name="firstname" length="45" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" length="45" />
+        </property>
+        <property name="dob" type="date">
+            <column name="dob" length="10" />
+        </property>
+        <property name="address1" type="string">
+            <column name="address1" length="45" />
+        </property>
+        <property name="address2" type="string">
+            <column name="address2" length="45" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="45" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <column name="last_updated" length="19" />
+        </property>
+        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_details_user_details_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.User" />
+        </set>
+    </class>
+</hibernate-mapping>

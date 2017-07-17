@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div id="contentDiv">TODO write content</div>
+        <script type="text/javascript" src="../_/js/jquery.min.js"></script>
+        <script type="text/javascript">
+            function showAll() {
+                var loader = document.createElement("div");
+                var loaderImg = document.createElement("img");
+
+                $(loader).css({display: 'block', margin: '0 auto', verticalAlign: 'middle', textAlign: 'center', padding: '15px', fontFamily: 'monospace'});
+                $(loaderImg).prop('src', '../images/other/cube.gif');
+                $(loaderImg).css({width: '32px', display: 'block', margin: '0 auto 15px'});
+
+                $(loader).append(loaderImg);
+                $(loader).append(document.createTextNode('Please Wait..'));
+                
+                return loader;
+            }
+        </script>
+    </body>
+</html>

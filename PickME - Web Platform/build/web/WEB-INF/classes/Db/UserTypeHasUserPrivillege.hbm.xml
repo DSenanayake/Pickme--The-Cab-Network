@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.UserTypeHasUserPrivillege" table="user_type_has_user_privillege" catalog="`PROJECT4.1`">
+        <id name="userTypeHasUserPrivillegeId" type="java.lang.Integer">
+            <column name="user_type_has_user_privillege_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userPrivillege" class="Db.UserPrivillege" fetch="select">
+            <column name="user_privillege_uri" length="150" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userType" class="Db.UserType" fetch="select">
+            <column name="user_type_id" not-null="true" />
+        </many-to-one>
+        <property name="allow" type="java.lang.Boolean">
+            <column name="allow" />
+        </property>
+        <property name="allowedPage" type="string">
+            <column name="allowed_page" length="200" />
+        </property>
+        <property name="disallowedPage" type="string">
+            <column name="disallowed_page" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

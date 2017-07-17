@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.PaidHistory" table="paid_history" catalog="`PROJECT4.1`">
+        <id name="paidHistoryId" type="java.lang.Integer">
+            <column name="paid_history_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="paymentMethod" class="Db.PaymentMethod" fetch="select">
+            <column name="payment_method_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="paymentStatus" class="Db.PaymentStatus" fetch="select">
+            <column name="payment_status_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="payLaterService" class="Db.PayLaterService" fetch="select">
+            <column name="pay_later_service_id" not-null="true" />
+        </many-to-one>
+        <property name="paidAmount" type="double">
+            <column name="paid_amount" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="dueAmount" type="double">
+            <column name="due_amount" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="dateTime" type="timestamp">
+            <column name="date_time" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

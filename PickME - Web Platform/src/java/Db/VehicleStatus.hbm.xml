@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.VehicleStatus" table="vehicle_status" catalog="`PROJECT4.1`">
+        <id name="vehicleStatusId" type="java.lang.Integer">
+            <column name="vehicle_status_id" />
+            <generator class="identity" />
+        </id>
+        <property name="vehicleStatus" type="string">
+            <column name="vehicle_status" length="45" />
+        </property>
+        <set name="cabs" table="cab" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vehicle_status_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.Cab" />
+        </set>
+    </class>
+</hibernate-mapping>

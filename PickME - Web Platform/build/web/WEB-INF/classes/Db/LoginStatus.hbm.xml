@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.LoginStatus" table="login_status" catalog="`PROJECT4.1`">
+        <id name="loginStatusId" type="java.lang.Integer">
+            <column name="login_status_id" />
+            <generator class="identity" />
+        </id>
+        <property name="loginStatus" type="string">
+            <column name="login_status" length="45" />
+        </property>
+        <set name="loginDetailses" table="login_details" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="login_status_login_status_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.LoginDetails" />
+        </set>
+    </class>
+</hibernate-mapping>

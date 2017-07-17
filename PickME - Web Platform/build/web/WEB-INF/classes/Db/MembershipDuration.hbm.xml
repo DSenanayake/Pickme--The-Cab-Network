@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.MembershipDuration" table="membership_duration" catalog="`PROJECT4.1`">
+        <id name="membershipDurationId" type="java.lang.Integer">
+            <column name="membership_duration_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="durationMonths" class="Db.DurationMonths" fetch="select">
+            <column name="duration_months_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="membershipPlan" class="Db.MembershipPlan" fetch="select">
+            <column name="membership_plan_id" not-null="true" />
+        </many-to-one>
+        <property name="durationFee" type="java.lang.Double">
+            <column name="duration_fee" precision="22" scale="0" />
+        </property>
+        <set name="membershipUpgradeHistories" table="membership_upgrade_history" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="membership_duration_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.MembershipUpgradeHistory" />
+        </set>
+    </class>
+</hibernate-mapping>

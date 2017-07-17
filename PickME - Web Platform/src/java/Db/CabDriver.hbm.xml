@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.CabDriver" table="cab_driver" catalog="`PROJECT4.1`">
+        <id name="cabDriverId" type="java.lang.Integer">
+            <column name="cab_driver_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="serviceProvider" class="Db.ServiceProvider" fetch="select">
+            <column name="service_provider_service_provider_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cabDriverLocation" class="Db.CabDriverLocation" fetch="select">
+            <column name="cab_driver_location_cab_driver_location_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="loginDetails" class="Db.LoginDetails" fetch="select">
+            <column name="login_details_login_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="profilePicture" class="Db.ProfilePicture" fetch="select">
+            <column name="profile_picture_profile_pic_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cabDriverDetails" class="Db.CabDriverDetails" fetch="select">
+            <column name="cab_driver_details_cab_driver_details_id" not-null="true" />
+        </many-to-one>
+        <set name="serviceOrders" table="service_order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cab_driver_id" />
+            </key>
+            <one-to-many class="Db.ServiceOrder" />
+        </set>
+        <set name="driverContactNos" table="driver_contact_no" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cab_driver_cab_driver_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.DriverContactNo" />
+        </set>
+        <set name="leavingrequests" table="leavingrequest" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cab_driver_id" />
+            </key>
+            <one-to-many class="Db.Leavingrequest" />
+        </set>
+    </class>
+</hibernate-mapping>

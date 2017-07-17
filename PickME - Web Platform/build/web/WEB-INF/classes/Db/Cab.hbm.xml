@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.Cab" table="cab" catalog="`PROJECT4.1`">
+        <id name="cabId" type="string">
+            <column name="cab_id" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="vehicleModel" class="Db.VehicleModel" fetch="select">
+            <column name="vehicle_model_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vehicleStatus" class="Db.VehicleStatus" fetch="select">
+            <column name="vehicle_status_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="serviceProvider" class="Db.ServiceProvider" fetch="select">
+            <column name="service_provider_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vehicleColour" class="Db.VehicleColour" fetch="select">
+            <column name="vehicle_colour_id" not-null="true" />
+        </many-to-one>
+        <property name="costPerKm" type="java.lang.Double">
+            <column name="cost_per_km" precision="22" scale="0" />
+        </property>
+        <set name="serviceOrders" table="service_order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cab_id" length="45" />
+            </key>
+            <one-to-many class="Db.ServiceOrder" />
+        </set>
+    </class>
+</hibernate-mapping>

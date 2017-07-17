@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.AdminDetails" table="admin_details" catalog="`PROJECT4.1`">
+        <id name="adminDetailsId" type="java.lang.Integer">
+            <column name="admin_details_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="gender" class="Db.Gender" fetch="select">
+            <column name="gender_gender_id" not-null="true" />
+        </many-to-one>
+        <property name="firstname" type="string">
+            <column name="firstname" length="45" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" length="45" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="45" />
+        </property>
+        <set name="administrators" table="administrator" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="admin_details_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.Administrator" />
+        </set>
+    </class>
+</hibernate-mapping>

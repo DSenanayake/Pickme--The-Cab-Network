@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.PaymentOption" table="payment_option" catalog="`PROJECT4.1`">
+        <id name="paymentOptionId" type="java.lang.Integer">
+            <column name="payment_option_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="paymentMethod" class="Db.PaymentMethod" fetch="select">
+            <column name="payment_method_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="paymentInfoStatus" class="Db.PaymentInfoStatus" fetch="select">
+            <column name="payment_info_status_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="loginDetails" class="Db.LoginDetails" fetch="select">
+            <column name="login_details_login_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="priorityOrder" class="Db.PriorityOrder" fetch="select">
+            <column name="priority_order_id" not-null="true" />
+        </many-to-one>
+        <property name="accountId" type="string">
+            <column name="account_id" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

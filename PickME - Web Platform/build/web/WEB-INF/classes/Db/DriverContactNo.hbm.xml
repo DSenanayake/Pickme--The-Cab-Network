@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.DriverContactNo" table="driver_contact_no" catalog="`PROJECT4.1`">
+        <id name="driverCabNoId" type="java.lang.Integer">
+            <column name="driver_cab_no_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cabDriver" class="Db.CabDriver" fetch="select">
+            <column name="cab_driver_cab_driver_id" not-null="true" />
+        </many-to-one>
+        <property name="contactNo" type="string">
+            <column name="contact_no" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.PayLaterService" table="pay_later_service" catalog="`PROJECT4.1`">
+        <id name="payLaterServiceId" type="java.lang.Integer">
+            <column name="pay_later_service_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="serviceStatus" class="Db.ServiceStatus" fetch="select">
+            <column name="service_status_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="Db.User" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="serviceProvider" class="Db.ServiceProvider" fetch="select">
+            <column name="service_provider_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="serviceDuration" class="Db.ServiceDuration" fetch="select">
+            <column name="service_duration_id" not-null="true" />
+        </many-to-one>
+        <property name="basicPayment" type="double">
+            <column name="basic_payment" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="payDate" type="timestamp">
+            <column name="pay_date" length="19" not-null="true" />
+        </property>
+        <property name="agreedDate" type="timestamp">
+            <column name="agreed_date" length="19" />
+        </property>
+        <property name="currentBalance" type="double">
+            <column name="current_balance" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="expireDate" type="timestamp">
+            <column name="expire_date" length="19" />
+        </property>
+        <set name="paidHistories" table="paid_history" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pay_later_service_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.PaidHistory" />
+        </set>
+        <set name="payLaterItems" table="pay_later_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pay_later_service_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.PayLaterItem" />
+        </set>
+    </class>
+</hibernate-mapping>

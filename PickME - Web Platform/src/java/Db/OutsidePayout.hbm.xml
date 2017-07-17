@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.OutsidePayout" table="outside_payout" catalog="`PROJECT4.1`">
+        <id name="outsidePayoutId" type="java.lang.Integer">
+            <column name="outside_payout_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="administrator" class="Db.Administrator" fetch="select">
+            <column name="administrator_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="payoutStatus" class="Db.PayoutStatus" fetch="select">
+            <column name="payout_status_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="serviceProvider" class="Db.ServiceProvider" fetch="select">
+            <column name="service_provider_id" not-null="true" />
+        </many-to-one>
+        <property name="dateTime" type="timestamp">
+            <column name="date_time" length="19" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <property name="payoutAmount" type="java.lang.Double">
+            <column name="payout_amount" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

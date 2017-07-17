@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.ServiceDetails" table="service_details" catalog="`PROJECT4.1`">
+        <id name="serviceDetailsId" type="java.lang.Integer">
+            <column name="service_details_id" />
+            <generator class="identity" />
+        </id>
+        <property name="costPerKm" type="java.lang.Double">
+            <column name="cost_per_km" precision="22" scale="0" />
+        </property>
+        <property name="coverageArea" type="java.lang.Double">
+            <column name="coverage_area" precision="22" scale="0" />
+        </property>
+        <property name="minimumDistance" type="java.lang.Double">
+            <column name="minimum_distance" precision="22" scale="0" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <column name="last_updated" length="19" />
+        </property>
+        <set name="serviceProviders" table="service_provider" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="service_details_id" />
+            </key>
+            <one-to-many class="Db.ServiceProvider" />
+        </set>
+    </class>
+</hibernate-mapping>

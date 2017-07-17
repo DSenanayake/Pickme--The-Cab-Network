@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.User" table="user" catalog="`PROJECT4.1`">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userDetails" class="Db.UserDetails" fetch="select">
+            <column name="user_details_user_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="loginDetails" class="Db.LoginDetails" fetch="select">
+            <column name="login_details_login_details_id" not-null="true" />
+        </many-to-one>
+        <set name="payLaterServices" table="pay_later_service" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.PayLaterService" />
+        </set>
+        <set name="userLocationses" table="user_locations" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_user_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.UserLocations" />
+        </set>
+        <set name="serviceInvoices" table="service_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_user_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.ServiceInvoice" />
+        </set>
+    </class>
+</hibernate-mapping>

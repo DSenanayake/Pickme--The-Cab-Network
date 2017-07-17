@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.ProfilePicture" table="profile_picture" catalog="`PROJECT4.1`">
+        <id name="profilePicId" type="java.lang.Integer">
+            <column name="profile_pic_id" />
+            <generator class="identity" />
+        </id>
+        <property name="profilePicUrl" type="string">
+            <column name="profile_pic_url" length="100" />
+        </property>
+        <set name="userDetailses" table="user_details" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="profile_picture_profile_pic_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.UserDetails" />
+        </set>
+        <set name="cabDrivers" table="cab_driver" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="profile_picture_profile_pic_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.CabDriver" />
+        </set>
+        <set name="administrators" table="administrator" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="profile_pic_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.Administrator" />
+        </set>
+    </class>
+</hibernate-mapping>

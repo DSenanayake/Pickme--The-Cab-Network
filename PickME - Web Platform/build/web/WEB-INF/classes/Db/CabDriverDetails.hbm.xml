@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.CabDriverDetails" table="cab_driver_details" catalog="`PROJECT4.1`">
+        <id name="cabDriverDetailsId" type="java.lang.Integer">
+            <column name="cab_driver_details_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="city" class="Db.City" fetch="select">
+            <column name="city_city_id" not-null="true" />
+        </many-to-one>
+        <property name="firstName" type="string">
+            <column name="first_name" length="45" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="45" />
+        </property>
+        <property name="dob" type="string">
+            <column name="dob" length="45" />
+        </property>
+        <property name="address1" type="string">
+            <column name="address1" length="45" />
+        </property>
+        <property name="address2" type="string">
+            <column name="address2" length="45" />
+        </property>
+        <set name="cabDrivers" table="cab_driver" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cab_driver_details_cab_driver_details_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.CabDriver" />
+        </set>
+    </class>
+</hibernate-mapping>

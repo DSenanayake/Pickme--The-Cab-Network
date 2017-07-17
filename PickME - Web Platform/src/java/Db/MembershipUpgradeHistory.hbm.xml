@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.MembershipUpgradeHistory" table="membership_upgrade_history" catalog="`PROJECT4.1`">
+        <id name="membershipUpgradeId" type="java.lang.Integer">
+            <column name="membership_upgrade_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="serviceProvider" class="Db.ServiceProvider" fetch="select">
+            <column name="service_provider_service_provider_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="membershipDuration" class="Db.MembershipDuration" fetch="select">
+            <column name="membership_duration_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="membershipPlan" class="Db.MembershipPlan" fetch="select">
+            <column name="membership_plan_id" not-null="true" />
+        </many-to-one>
+        <property name="activatedDatetime" type="timestamp">
+            <column name="activated_datetime" length="19" />
+        </property>
+        <property name="expiresDatetime" type="timestamp">
+            <column name="expires_datetime" length="19" />
+        </property>
+        <set name="membershipPaymentHistories" table="membership_payment_history" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="membership_upgrade_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.MembershipPaymentHistory" />
+        </set>
+    </class>
+</hibernate-mapping>

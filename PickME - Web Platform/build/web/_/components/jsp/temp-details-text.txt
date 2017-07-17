@@ -1,0 +1,28 @@
+<legend>Service Details</legend>
+<div class="form-group">
+	<label for="serviceName" class="col-sm-3">Cab Service Name <span class="pull-right">:</span></label>
+	<div class="col-sm-9">
+		<input type="text" id="serviceName" name="serviceName" placeholder="Cab Service Name" class="form-control" />
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="serviceName" class="col-sm-3">Cost per KM <span class="pull-right">:</span></label>
+	<div class="col-sm-9">
+		<div class="input-group">
+			<div class="input-group-addon">Rs:</div>
+			<input type="text" id="serviceName" name="serviceName" placeholder="Cost per KM" class="form-control" />
+			<div class="input-group-addon">.00</div>
+		</div>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="serviceName" class="col-sm-3">Coverage Area <span  title="Coverage Area in KM from your current Service Location" data-toggle="tooltip" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <span class="pull-right">:</span></label>
+	<div class="col-sm-9">
+		<div class="input-group">
+			<input type="text" id="serviceName" name="serviceName" placeholder="Coverage Area" class="form-control" />
+			<div class="input-group-addon">KM</div>
+		</div>
+	</div>
+</div>

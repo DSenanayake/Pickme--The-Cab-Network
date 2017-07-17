@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.ServiceOrder" table="service_order" catalog="`PROJECT4.1`">
+        <id name="serviceOrderId" type="java.lang.Integer">
+            <column name="service_order_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="orderStatus" class="Db.OrderStatus" fetch="select">
+            <column name="order_status_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="destination" class="Db.Destination" fetch="select">
+            <column name="destination_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="serviceProvider" class="Db.ServiceProvider" fetch="select">
+            <column name="service_provider_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="serviceInvoice" class="Db.ServiceInvoice" fetch="select">
+            <column name="service_invoice_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cabDriver" class="Db.CabDriver" fetch="select">
+            <column name="cab_driver_id" />
+        </many-to-one>
+        <many-to-one name="startPoint" class="Db.StartPoint" fetch="select">
+            <column name="start_point_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cab" class="Db.Cab" fetch="select">
+            <column name="cab_id" length="45" />
+        </many-to-one>
+        <property name="km" type="java.lang.Double">
+            <column name="km" precision="22" scale="0" />
+        </property>
+        <property name="costPerKm" type="java.lang.Double">
+            <column name="cost_per_km" precision="22" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <property name="orderedAt" type="timestamp">
+            <column name="ordered_at" length="19" />
+        </property>
+        <property name="scheduledDateTime" type="timestamp">
+            <column name="scheduled_date_time" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

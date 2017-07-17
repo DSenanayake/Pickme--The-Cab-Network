@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.UserLocations" table="user_locations" catalog="`PROJECT4.1`">
+        <id name="userLocationsId" type="java.lang.Integer">
+            <column name="user_locations_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="locationType" class="Db.LocationType" fetch="select">
+            <column name="location_type_location_type_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="Db.User" fetch="select">
+            <column name="user_user_id" not-null="true" />
+        </many-to-one>
+        <property name="longitute" type="java.lang.Double">
+            <column name="longitute" precision="22" scale="0" />
+        </property>
+        <property name="lattitude" type="java.lang.Double">
+            <column name="lattitude" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

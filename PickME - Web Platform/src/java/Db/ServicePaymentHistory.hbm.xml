@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.ServicePaymentHistory" table="service_payment_history" catalog="`PROJECT4.1`">
+        <id name="servicePaymentId" type="java.lang.Integer">
+            <column name="service_payment_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="paymentMethod" class="Db.PaymentMethod" fetch="select">
+            <column name="payment_method_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="serviceInvoice" class="Db.ServiceInvoice" fetch="select">
+            <column name="service_invoice_service_invoice_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="paymentStatus" class="Db.PaymentStatus" fetch="select">
+            <column name="payment_stage_payment_stage_id" not-null="true" />
+        </many-to-one>
+        <property name="transactionId" type="string">
+            <column name="transaction_id" length="200" />
+        </property>
+        <property name="currencyRate" type="java.lang.Double">
+            <column name="currency_rate" precision="22" scale="0" />
+        </property>
+        <property name="paidAmount" type="java.lang.Double">
+            <column name="paid_amount" precision="22" scale="0" />
+        </property>
+        <property name="paypalFee" type="java.lang.Double">
+            <column name="paypal_fee" precision="22" scale="0" />
+        </property>
+        <property name="dueAmount" type="java.lang.Double">
+            <column name="due_amount" precision="22" scale="0" />
+        </property>
+        <property name="dateTime" type="timestamp">
+            <column name="date_time" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

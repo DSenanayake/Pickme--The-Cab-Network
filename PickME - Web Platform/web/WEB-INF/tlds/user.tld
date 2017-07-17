@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+    <tlib-version>1.0</tlib-version>
+    <short-name>user</short-name>
+    <uri>User</uri>
+
+    <!--confrim email-->
+    <tag>
+        <name>Confirm</name>
+        <tag-class>Model.UserConfirmation</tag-class>
+        <body-content>scriptless</body-content>
+        
+        <attribute>
+            <name>confirm</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    
+    <!--keep logged-->
+    <tag>
+        <name>KeepLogged</name>
+        <tag-class>Model.KeepLogged</tag-class>
+        <body-content>scriptless</body-content>
+
+        <attribute>
+            <name>request</name>
+            <rtexprvalue>true</rtexprvalue>
+            <required>true</required>
+        </attribute>
+    </tag>
+</taglib>

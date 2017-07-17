@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 10:30:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Db.LoginDetails" table="login_details" catalog="`PROJECT4.1`">
+        <id name="loginDetailsId" type="java.lang.Integer">
+            <column name="login_details_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userType" class="Db.UserType" fetch="select">
+            <column name="user_type_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="loginStatus" class="Db.LoginStatus" fetch="select">
+            <column name="login_status_login_status_id" not-null="true" />
+        </many-to-one>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" />
+        </property>
+        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="login_details_login_details_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.User" />
+        </set>
+        <set name="cabDrivers" table="cab_driver" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="login_details_login_details_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.CabDriver" />
+        </set>
+        <set name="administrators" table="administrator" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="login_details_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.Administrator" />
+        </set>
+        <set name="paymentOptions" table="payment_option" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="login_details_login_details_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.PaymentOption" />
+        </set>
+        <set name="serviceProviders" table="service_provider" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="login_details_id" not-null="true" />
+            </key>
+            <one-to-many class="Db.ServiceProvider" />
+        </set>
+        <set name="messagesForMsgFrom" table="message" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="msg_from" />
+            </key>
+            <one-to-many class="Db.Message" />
+        </set>
+        <set name="messagesForMsgTo" table="message" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="msg_to" />
+            </key>
+            <one-to-many class="Db.Message" />
+        </set>
+    </class>
+</hibernate-mapping>
